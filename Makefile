@@ -1,6 +1,9 @@
 JC = javac
 JVM = java
 
+#DP = docpath
+DP = doc
+
 #CP = ClassPath :: SP = SourcePath, all source files are at SP/**/*.java 
 CP = bin
 SP = src
@@ -32,3 +35,8 @@ clean:
 libjar:
 	jar cvfm PCG.jar MANIFEST.MF  -C bin .
 
+#generates javadoc
+doc:
+	rm -fr $(DP)/* |  echo "no doc to remove"
+	rmdir $(DP) | echo "no doc to remove"
+	javadoc $(SP)/**/*.java -d $(DP)

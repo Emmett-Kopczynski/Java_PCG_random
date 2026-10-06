@@ -1,92 +1,96 @@
 package rgen;
 
-/**
+/** TODO document
  *
  */
-public class LCG{
+public class LCG extends RandGen{
     
+    /* Variable Fields */
 
     /** TODO document
      *
      */
-    enum IntType {
-        I32, I64;
+    protected long increment;
+
+
+    /** TODO document
+     *
+     */
+    protected long coeficcient;
+    
+
+
+
+    /* Constructors */
+
+    /** TODO document 
+     *
+     */
+    private LCG(int seed){
+        super(seed);
+        this.coeficcient = 690069; /* taken from wikipedia's LCG page */
+        this.increment = 1; /* taken from wikipedia's LCG page */
+    }
+
+
+    /** TODO document 
+     *
+     */
+    private LCG(long seed){
+        super(seed);
+        this.coeficcient = 6364136223846793005l; /* taken from wikipedia's LCG page */
+        this.increment = 825366247; /* taken from wikipedia's LCG page */
     }
 
 
     /** TODO document
      *
      */
-    private int state32;
+    private LCG(){
+        super();
+        this.coeficcient = 6364136223846793005l; /* taken from wikipedia's LCG page */
+        this.increment = 1; /* taken from wikipedia's LCG page */
+    }
+
+
+    /** TODO document 
+     *
+     */
+    public static LCG makeLCG(){
+        return new LCG();
+    }
+
+
+    /** TODO document
+     *
+     */
+    public static LCG makeLCG32(int seed){
+        return new LCG(seed);
+    }
+
+
+    /** TODO document
+     *
+     */
+    public static LCG makeLCG64(long seed){
+        return new LCG(seed);
+    }
     
 
-    /** TODO document
-     *
-     */
-    private long state64;
-    
-
-    /** TODO  document
-     *
-     */
-    private int coefficient;
-
-
-    /** TODO  document
-     *
-     */
-    private int added;
-
-
-    /** TODO document
-     *
-     */
-    private IntType type;
-    
 
 
 
+    /* getters and setters */
+
+    @Override
+    public void stepForward(){
+        if(super.bitcount == IntType.I32){
+            super.state32 = (((int)this.coeficcient) * super.state32) + ((int)this.increment);
+        } else{
+            super.state64 = (this.coeficcient * super.state64) + this.increment;
+        }
+    }
 
 
-
-    /** TODO document
-     *
-     */
-    public LCG(int seed){
-        /* TODO add error handling to ensure a valid seed*/
-        this.state32 = seed;
-        this.added = 3; /* TODO change the added to something more sensible */
-        this.type = IntType.I32;
-    } /* TODO implement */
-
-    /** TODO document
-     *
-     */
-    public LCG(long seed){
-        /* TODO add error handling to ensure a valid seed*/
-        this.state64 = seed;
-        this.added = 3; /* TODO change the added to something more sensible */
-        this.type = IntType.I64;
-    } /* TODO implement */
-
-    /** TODO document
-     *
-     */
-    public LCG(int seed, int added){
-        /* TODO add error handling to ensure a valid seed*/
-        this.state32 = seed;
-        this.added = added;
-        this.type = IntType.I32;
-    } /* TODO implement */
-
-    /** TODO document
-     *
-     */
-    public LCG(long seed, int added){
-        /* TODO add error handling to ensure a valid seed*/
-        this.state64 = seed;
-        this.added = added;
-        this.type = IntType.I64;
-    } /* TODO implement */
-    
-}
+   
+} /* TODO implement */

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"rgen","l":"FastPCG"},{"p":"rgen","l":"RandGen.IntType"},{"p":"rgen","l":"LCG"},{"p":"rgen","l":"MCG"},{"p":"rgen","l":"PCG"},{"p":"rgen","l":"RandGen"},{"p":"rgen","l":"RgenUtils"},{"p":"rgen","l":"SecurePCG"}];updateSearchResults();
